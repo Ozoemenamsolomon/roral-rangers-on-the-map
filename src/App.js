@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import styled from 'styled-components';
+import Test from './components/Test';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Anleitung>
+            Edit <code>src/App.js</code> and save to reload.
+          </Anleitung>
+          <Route path="/solozo">
+            <Test />
+          </Route>
+
+          <Link to="/solozo">sompo</Link>
+          <a
+            className="App-link"
+            href="https://www.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Google
+          </a>
+        </header>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
+const Anleitung = styled.p`
+  color: red;
+`;
