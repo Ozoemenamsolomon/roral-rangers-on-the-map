@@ -1,12 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export interface FooterProps {}
 
 const Footer = () => {
   return (
-    <footer>
+    <MyFooter>
       <p>
-        Copyright &copy;2021 - Royal Rangers of Nigeria | All Rights Reserved
+        Copyright &copy;{new Date().getFullYear()} - Royal Rangers of Nigeria |
+        All Rights Reserved
       </p>
       <h1>Hello from Footer</h1>
       <a
@@ -17,8 +19,16 @@ const Footer = () => {
       >
         Google
       </a>
-    </footer>
+    </MyFooter>
   );
 };
 
 export default Footer;
+
+const MyFooter = styled.footer`
+  @media (max-width: 600px) {
+    & {
+      padding-bottom: 5em;
+    }
+  }
+`;

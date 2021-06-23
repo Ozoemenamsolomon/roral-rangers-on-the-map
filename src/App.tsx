@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import DesktopLayout from './components/layout/DesktopLayout';
+import Layout from './components/layout/Layout';
 import About from './pages/About';
 import Docs from './pages/Docs';
 import Home from './pages/Home';
@@ -8,7 +8,7 @@ import Shop from './pages/Shop';
 function App() {
   return (
     <Router>
-      <DesktopLayout>
+      <Layout>
         <header className="App-header"></header>
         <Switch>
           <Route path="/about">
@@ -24,7 +24,7 @@ function App() {
             <Shop />
           </Route>
         </Switch>
-      </DesktopLayout>
+      </Layout>
     </Router>
   );
 }
