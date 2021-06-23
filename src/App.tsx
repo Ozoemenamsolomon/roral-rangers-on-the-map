@@ -1,40 +1,32 @@
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import styled from 'styled-components';
-import Test from './components/Test';
-import Ann from './components/ann';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import DesktopLayout from './components/layout/DesktopLayout';
+import About from './pages/About';
+import Docs from './pages/Docs';
+import Home from './pages/Home';
+import Shop from './pages/Shop';
 
 function App() {
   return (
     <Router>
-      <main className="App">
-        <header className="App-header">
-          <Anleitung>
-            Edit <code>src/App.js</code> and save to reload.
-            <Link to="/solozo">sompo</Link>
-            <Link to="/ann">Ann</Link>
-          </Anleitung>
-          <a
-            className="App-link"
-            href="https://www.google.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Google
-          </a>
-        </header>
-      </main>
-      <Route path="/solozo">
-        <Test />
-      </Route>
-      <Route path="/ann">
-        <Ann word="" />
-      </Route>
+      <DesktopLayout>
+        <header className="App-header"></header>
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/docs">
+            <Docs />
+          </Route>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/shop">
+            <Shop />
+          </Route>
+        </Switch>
+      </DesktopLayout>
     </Router>
   );
 }
 
 export default App;
-
-const Anleitung = styled.p`
-  color: red;
-`;
