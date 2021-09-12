@@ -19,17 +19,22 @@ const Layout: React.FC = ({ children }) => {
     };
   }, [screenWidth]);
   return (
-    <>
+    <LayoutDiv>
       <Header screenWidth={screenWidth} />
       <Main>{children}</Main>
       <Footer />
-    </>
+    </LayoutDiv>
   );
 };
 
 export default Layout;
 
+const LayoutDiv = styled.div`
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+`;
 const Main = styled.main`
   padding-top: 5em;
-  min-height: 150vh;
 `;

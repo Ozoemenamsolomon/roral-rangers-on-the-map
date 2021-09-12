@@ -1,28 +1,44 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React from 'react';
 import Layout from './components/layout/Layout';
-import About from './pages/About';
-import Docs from './pages/Docs';
 import Home from './pages/Home';
-import Shop from './pages/Shop';
+import About from './pages/About';
+import AddLocation from './pages/AddLocation';
+
+const Info = React.lazy(() => import('./pages/Info'));
+const Shop = React.lazy(() => import('./pages/Shop'));
+const Account = React.lazy(() => import('./pages/Account'));
 
 function App() {
   return (
     <Router>
       <Layout>
-        <header className="App-header"></header>
         <Switch>
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/docs">
-            <Docs />
+          <Route path="/add-location">
+            <AddLocation />
           </Route>
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/shop">
-            <Shop />
-          </Route>
+          <React.Suspense
+            fallback
+            {...() => {
+              <h1>Loading...</h1>;
+            }}
+          >
+            <Route path="/info">
+              <Info />
+            </Route>
+            <Route path="/login" exact>
+              <Account />
+            </Route>
+            <Route path="/shop">
+              <Shop />
+            </Route>
+          </React.Suspense>
         </Switch>
       </Layout>
     </Router>

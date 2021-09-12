@@ -31,8 +31,8 @@ const Header: React.FC<HeaderProps> = ({ screenWidth }) => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to="/docs">
-                <span>Docs</span>
+              <NavLink to="/info">
+                <span>Info</span>
               </NavLink>
             </NavItem>
           </NavList>
