@@ -4,7 +4,9 @@ import {
   collection,
   getDocs,
   Firestore,
+  addDoc,
 } from 'firebase/firestore';
+import { LocationProps } from '../pages/AddLocation';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC5XtMGne-bJh2IKwYlM0Yr_fXqXo0s5e0',
@@ -26,4 +28,10 @@ export async function getCities(db: Firestore) {
   const citySnapshot = await getDocs(citiesCol);
   const cityList = citySnapshot.docs.map((doc) => doc.data());
   return cityList;
+}
+export async function addLocation(db: Firestore, data: LocationProps) {
+  const locationCol = collection(db, 'Location');
+  const citySnapshot = await addDoc(locationCol, data);
+  const cityID = citySnapshot.id;
+  return cityID;
 }
