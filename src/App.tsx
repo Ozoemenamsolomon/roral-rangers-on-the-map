@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import AddLocation from './pages/AddLocation';
 
+const FindOutpost = React.lazy(() => import('./pages/FindOutpost'));
 const Info = React.lazy(() => import('./pages/Info'));
 const Shop = React.lazy(() => import('./pages/Shop'));
 const Account = React.lazy(() => import('./pages/Account'));
@@ -29,6 +30,9 @@ function App() {
               <h1>Loading...</h1>;
             }}
           >
+            <Route path="/find-outpost">
+              <FindOutpost />
+            </Route>
             <Route path="/info">
               <Info />
             </Route>
