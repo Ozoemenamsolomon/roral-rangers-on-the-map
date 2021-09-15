@@ -37,4 +37,6 @@ const LayoutDiv = styled.div`
 `;
 const Main = styled.main`
   padding-top: 5em;
+  display: flex;
+  justify-content: center;
 `;
