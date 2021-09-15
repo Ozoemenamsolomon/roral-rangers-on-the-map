@@ -51,6 +51,8 @@ const MyHeader = styled.header`
   position: fixed;
   width: 100%;
   top: 0;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.472);
+  background-color: white;
 `;
 const NavList = styled.ul`
   justify-content: space-around;
@@ -68,7 +70,7 @@ const NavLink = styled(Link)`
 `;
 
 const BrandLink = styled(NavLink)`
-  padding: 1em 0.5em;
+  padding: 0.5em 0.5em;
 `;
 
 const NavBar = styled.nav`

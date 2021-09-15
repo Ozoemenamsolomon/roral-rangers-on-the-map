@@ -2,18 +2,19 @@ import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import styled from 'styled-components';
 import SooPopup from '../components/SooPopup';
 import { addLocation, db } from '../utils/firebase';
+import InputLabel from '../components/InputLabel';
 
 export interface AddLocationProps {}
 
 export interface LocationProps {
-  churchName?: string;
-  address?: string;
-  section?: string;
-  district?: string;
-  alias?: string;
-  state?: string;
-  telephone?: number | string;
-  hasRanger?: Boolean | null;
+  churchName: string;
+  address: string;
+  section: string;
+  district: string;
+  alias: string;
+  state: string;
+  telephone: number | string;
+  hasRanger: Boolean | null;
   coordinate: string;
   realCoordinate?: { latitude: number; longitude: number };
 }
@@ -107,117 +108,99 @@ const AddLocation: React.FC<AddLocationProps> = () => {
       <FormWrapper>
         <form onSubmit={(e) => e.preventDefault()}>
           <FormContainer>
-            <InputLabelWrapper>
-              <label htmlFor="churchName">Church Name</label>
-              <input
-                type="text"
-                name="churchName"
-                id=""
-                value={formValue.churchName}
-                onChange={handleChange}
-              />
-            </InputLabelWrapper>
-            <InputLabelWrapper>
-              <label htmlFor="address">Adress</label>
-              <textarea
-                name="address"
-                id="address"
-                value={formValue.address}
-                onChange={handleChange}
-              />
-            </InputLabelWrapper>
-            <InputLabelWrapper>
-              <label htmlFor="section">Section</label>
-              <input
-                type="text"
-                name="section"
-                id="section"
-                value={formValue.section}
-                onChange={handleChange}
-              />
-            </InputLabelWrapper>
-            <InputLabelWrapper>
-              <label htmlFor="district">District</label>
-              <input
-                type="text"
-                name="district"
-                id=""
-                value={formValue.district}
-                onChange={handleChange}
-              />
-            </InputLabelWrapper>
-            <InputLabelWrapper>
-              <label htmlFor="alias">Alias</label>
-              <input
-                type="text"
-                name="alias"
-                id="alias"
-                value={formValue.alias}
-                onChange={handleChange}
-              />
-            </InputLabelWrapper>
-            <InputLabelWrapper>
-              <label htmlFor="state">State</label>
-              <input
-                type="text"
-                name="state"
-                id="state"
-                value={formValue.state}
-                onChange={handleChange}
-              />
-            </InputLabelWrapper>
-            <InputLabelWrapper>
-              <label htmlFor="telephone">Telephone</label>
-              <input
-                type="tel"
-                name="telephone"
-                id="telephone"
-                value={formValue.telephone}
-                onChange={handleChange}
-              />
-            </InputLabelWrapper>
-            <InputLabelWrapper>
-              <label htmlFor="hasRangers">Rangers?</label>
-              <input
-                type="checkbox"
-                name="hasRangers"
-                id="hasRangers"
-                onChange={handleChange}
-              />
-            </InputLabelWrapper>
+            <InputLabel
+              type="text"
+              name="churchName"
+              id=""
+              value={formValue.churchName}
+              onChange={handleChange}
+              label="Church Name"
+            />
+            <InputLabel
+              type="text"
+              name="address"
+              id="address"
+              value={formValue.address}
+              onChange={handleChange}
+              label="Adress"
+            />
+            <InputLabel
+              label="Section"
+              type="text"
+              name="section"
+              id="section"
+              value={formValue.section}
+              onChange={handleChange}
+            />
+            <InputLabel
+              type="text"
+              name="district"
+              id=""
+              value={formValue.district}
+              onChange={handleChange}
+              label="District"
+            />
+            <InputLabel
+              type="text"
+              name="alias"
+              id="alias"
+              value={formValue.alias}
+              onChange={handleChange}
+              label="Alias"
+            />
+            <InputLabel
+              type="text"
+              name="state"
+              id="state"
+              value={formValue.state}
+              onChange={handleChange}
+              label="State"
+            />
+            <InputLabel
+              type="tel"
+              name="telephone"
+              id="telephone"
+              value={formValue.telephone}
+              onChange={handleChange}
+              label="Telephone"
+            />
+            <InputLabel
+              type="checkbox"
+              name="hasRangers"
+              id="hasRangers"
+              onChange={handleChange}
+              label="Rangers?"
+            />
+            <InputLabel
+              type="text"
+              name="coordinate"
+              id="co-ord"
+              placeholder="paste coordinate"
+              value={formValue.coordinate}
+              onChange={handleChange}
+              readOnly={autoLocation}
+              label="Coordinate"
+            />
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span>or</span>
 
-            <InputLabelWrapper>
-              <label htmlFor="co-ord">Coordinate</label>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <input
-                  type="text"
-                  name="coordinate"
-                  id="co-ord"
-                  placeholder="paste coordinate"
-                  value={formValue.coordinate}
-                  onChange={handleChange}
-                  readOnly={autoLocation}
-                />
-                <span>or</span>
-
-                <SooPopup
-                  trigger={
-                    <button onClick={getUserLocation}>
-                      Get Current Position
-                    </button>
-                  }
-                  btns={[
-                    {
-                      handler: getUserLocation,
-                      content: 'Continue',
-                    },
-                  ]}
-                >
-                  Your permission is needed to enable the app get your location,
-                  please click <strong>continue</strong> to allow
-                </SooPopup>
-              </div>
-            </InputLabelWrapper>
+              <SooPopup
+                trigger={
+                  <button onClick={getUserLocation}>
+                    Get Current Position
+                  </button>
+                }
+                btns={[
+                  {
+                    handler: getUserLocation,
+                    content: 'Continue',
+                  },
+                ]}
+              >
+                Your permission is needed to enable the app get your location,
+                please click <strong>continue</strong> to allow
+              </SooPopup>
+            </div>
             <button type="submit" onClick={submitForm}>
               Submit
             </button>
@@ -237,20 +220,4 @@ const FormContainer = styled.div`
 
 const FormWrapper = styled.div`
   max-width: 350px;
-`;
-
-const InputLabelWrapper = styled.div`
-  display: flex;
-  background-color: red;
-  & > input {
-    padding: 0.5rem 0.3rem;
-  }
-  & > input,
-  & > div,
-  & > textarea {
-    flex: 1;
-  }
-  & > label {
-    flex: 0.5;
-  }
 `;

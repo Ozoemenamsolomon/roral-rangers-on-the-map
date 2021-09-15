@@ -17,7 +17,7 @@ const SooPopup: React.FC<SooPopupProps> = ({ btns, children, trigger }) => {
         closeOnDocumentClick
         trigger={trigger}
         onClose={closeModal}
-        position="right center"
+        position="top center"
       >
         <div>{children}</div>
         {btns.map((btn, id) => {
