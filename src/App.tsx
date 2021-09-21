@@ -6,7 +6,6 @@ import About from './pages/About';
 import AddLocation from './pages/AddLocation';
 import NotFound from './pages/NotFound';
 
-
 const FindOutpost = React.lazy(() => import('./pages/FindOutpost'));
 const Info = React.lazy(() => import('./pages/Info'));
 const Shop = React.lazy(() => import('./pages/Shop'));
@@ -39,14 +38,14 @@ function App() {
               <Info />
             </Route>
             {/* TODO create "/login", "/request" under account route*/}
-            <Route path="/account" exact >
+            <Route path="/account" exact>
               <Account />
             </Route>
             <Route path="/shop">
               <Shop />
             </Route>
+            <Route component={NotFound} />
           </React.Suspense>
-          <Route path="*" component={NotFound}/>
         </Switch>
       </Layout>
     </Router>

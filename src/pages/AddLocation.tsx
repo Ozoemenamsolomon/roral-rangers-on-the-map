@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SooPopup from '../components/SooPopup';
 import { addLocation, db } from '../utils/firebase';
 import InputLabel from '../components/InputLabel';
+import { FormikValues, useFormik } from 'formik';
 
 export interface AddLocationProps {}
 
@@ -20,7 +21,7 @@ export interface LocationProps {
 }
 
 const AddLocation: React.FC<AddLocationProps> = () => {
-  const defaultFontValue: LocationProps = {
+  const defaultValue: FormikValues = {
     churchName: '',
     address: '',
     section: '',
@@ -32,7 +33,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
     coordinate: '',
   };
 
-  const [formValue, setFormValue] = useState(defaultFontValue);
+  const [formValue, setFormValue] = useState(defaultValue);
   const [autoLocation, setAutoLocation] = useState(false);
 
   const getUserLocation = () => {
@@ -89,6 +90,11 @@ const AddLocation: React.FC<AddLocationProps> = () => {
     }
   };
 
+  const formik = useFormik({
+    initialValues: defaultValue,
+    onSubmit: handleChange,
+  });
+
   const submitForm = (e: MouseEvent) => {
     e.preventDefault();
     console.log(formValue);
@@ -112,16 +118,16 @@ const AddLocation: React.FC<AddLocationProps> = () => {
               type="text"
               name="churchName"
               id=""
-              value={formValue.churchName}
-              onChange={handleChange}
+              value={formik.values.churchName}
+              onChange={formik.handleChange}
               label="Church Name"
             />
             <InputLabel
               type="text"
               name="address"
               id="address"
-              value={formValue.address}
-              onChange={handleChange}
+              value={formik.values.address}
+              onChange={formik.handleChange}
               label="Adress"
             />
             <InputLabel
@@ -129,46 +135,46 @@ const AddLocation: React.FC<AddLocationProps> = () => {
               type="text"
               name="section"
               id="section"
-              value={formValue.section}
-              onChange={handleChange}
+              value={formik.values.section}
+              onChange={formik.handleChange}
             />
             <InputLabel
               type="text"
               name="district"
               id=""
-              value={formValue.district}
-              onChange={handleChange}
+              value={formik.values.district}
+              onChange={formik.handleChange}
               label="District"
             />
             <InputLabel
               type="text"
               name="alias"
               id="alias"
-              value={formValue.alias}
-              onChange={handleChange}
+              value={formik.values.alias}
+              onChange={formik.handleChange}
               label="Alias"
             />
             <InputLabel
               type="text"
               name="state"
               id="state"
-              value={formValue.state}
-              onChange={handleChange}
+              value={formik.values.state}
+              onChange={formik.handleChange}
               label="State"
             />
             <InputLabel
               type="tel"
               name="telephone"
               id="telephone"
-              value={formValue.telephone}
-              onChange={handleChange}
+              value={formik.values.telephone}
+              onChange={formik.handleChange}
               label="Telephone"
             />
             <InputLabel
               type="checkbox"
               name="hasRangers"
               id="hasRangers"
-              onChange={handleChange}
+              onChange={formik.handleChange}
               label="Rangers?"
             />
             <InputLabel
@@ -176,8 +182,8 @@ const AddLocation: React.FC<AddLocationProps> = () => {
               name="coordinate"
               id="co-ord"
               placeholder="paste coordinate"
-              value={formValue.coordinate}
-              onChange={handleChange}
+              value={formik.values.coordinate}
+              onChange={formik.handleChange}
               readOnly={autoLocation}
               label="Coordinate"
             />
