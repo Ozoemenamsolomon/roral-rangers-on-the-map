@@ -6,8 +6,9 @@ export interface ContainerProps {
   display?: string;
   justifyContent?: string;
   alignItems?: string;
-  maxWidth?:string
-  maxHeight?:string
+  maxWidth?: string;
+  maxHeight?: string;
+  padding?: string;
 }
 
 const Container: React.FC<ContainerProps> = ({
@@ -17,7 +18,8 @@ const Container: React.FC<ContainerProps> = ({
   alignItems,
   display,
   maxWidth,
-  maxHeight
+  maxHeight,
+  padding,
 }) => {
   return (
     <ContainerDiv
@@ -27,6 +29,7 @@ const Container: React.FC<ContainerProps> = ({
       display={display}
       maxWidth={maxWidth}
       maxHeight={maxHeight}
+      padding={padding}
     >
       {children}
     </ContainerDiv>
@@ -39,14 +42,17 @@ const ContainerDiv = styled('div')<{
   justifyContent?: string;
   alignItems?: string;
   display?: string;
-  maxWidth?:string
-  maxHeight?:string
+  maxWidth?: string;
+  maxHeight?: string;
+  padding?: string;
 }>`
   width: ${(props) => `${props.width}%` || '70%'};
   max-width: ${(props) => `${props.maxWidth}` || 'unset'};
   max-width: ${(props) => `${props.maxHeight}` || 'unset'};
-  
+
   display: ${(props) => props.display || 'unset'};
   justify-content: ${(props) => props.justifyContent || 'unset'};
   align-items: ${(props) => props.alignItems || 'unset'};
+
+  padding: ${(props) => props.padding || 'unset'};
 `;

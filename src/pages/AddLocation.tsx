@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SooPopup from '../components/SooPopup';
 import { addLocation, db } from '../utils/firebase';
 import InputLabel from '../components/InputLabel';
+import Container from '../components/Container';
 
 export interface AddLocationProps {}
 
@@ -13,7 +14,7 @@ export interface LocationProps {
   district: string;
   alias: string;
   state: string;
-  telephone: number | string;
+  telephone: number;
   hasRanger: Boolean | null;
   coordinate: string;
   realCoordinate?: { latitude: number; longitude: number };
@@ -27,7 +28,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
     district: '',
     alias: '',
     state: '',
-    telephone: '',
+    telephone: 0,
     hasRanger: null,
     coordinate: '',
   };
@@ -57,35 +58,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
     if (e.target.type === 'checkbox') {
       console.dir(e.target);
     } else {
-      switch (e.target.name) {
-        case 'churchName':
-          setFormValue({ ...formValue, churchName: e.target.value });
-          break;
-        case 'address':
-          setFormValue({ ...formValue, address: e.target.value });
-          break;
-        case 'section':
-          setFormValue({ ...formValue, section: e.target.value });
-          break;
-        case 'district':
-          setFormValue({ ...formValue, district: e.target.value });
-          break;
-        case 'alias':
-          setFormValue({ ...formValue, alias: e.target.value });
-          break;
-        case 'state':
-          setFormValue({ ...formValue, state: e.target.value });
-          break;
-        // TODO work on the number issue
-        case 'telephone':
-          setFormValue({ ...formValue, telephone: e.target.value });
-          break;
-        case 'coordinate':
-          setFormValue({ ...formValue, coordinate: e.target.value });
-          break;
-        default:
-          break;
-      }
+      setFormValue({ ...formValue, [e.target.name]: e.target.value });
     }
   };
 
@@ -102,7 +75,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
   };
 
   return (
-    <div>
+    <Container maxWidth="1200px" width={85}>
       <h1>Add a Location</h1>
       <p>Let´s put Royal Rangers Nigeria on the map! 👮🏽‍♂️</p>
       <FormWrapper>
@@ -122,7 +95,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
               id="address"
               value={formValue.address}
               onChange={handleChange}
-              label="Adress"
+              label="Address"
             />
             <InputLabel
               label="Section"
@@ -207,7 +180,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
           </FormContainer>
         </form>
       </FormWrapper>
-    </div>
+    </Container>
   );
 };
 

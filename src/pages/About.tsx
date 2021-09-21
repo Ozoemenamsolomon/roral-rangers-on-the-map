@@ -5,7 +5,7 @@ export interface AboutProps {}
 
 const About: React.FC = () => {
   return (
-    <Container  maxWidth="1200px" width={80}>
+    <Container maxWidth="1200px" width={85}>
       <h1>About Royal Rangers</h1>
       <p>
         The Royal Rangers program is an activity-based, small group church

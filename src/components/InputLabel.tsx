@@ -40,18 +40,13 @@ export default InputLabel;
 
 const InputLabelWrapper = styled.div`
   display: flex;
-  & > input {
-    padding: 0.5rem 0.3rem;
-  }
-
-  & > div {
-    flex: 1;
-  }
-  & > label {
-    flex: 0.5;
-  }
+  flex-direction: column;
+  margin-bottom: 1rem;
 `;
 const SooInput = styled.input`
-  min-height: 2rem;
+  min-height: 2.5rem;
   flex: 1;
+  padding: 0.5rem 0.3rem;
+  border-width: 1px;
+  border-radius: 0.5rem;
 `;
