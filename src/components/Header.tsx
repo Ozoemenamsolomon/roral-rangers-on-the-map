@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
+import { NavLink as Linky } from 'react-router-dom';
 import styled from 'styled-components';
 import Container from './Container';
+import Logo from "../images/RR-ng.svg"
 
 export interface HeaderProps {
   screenWidth: number;
@@ -16,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ screenWidth }) => {
         width={90}
       >
         <BrandLink to="/">
-          <h1>Header Logo</h1>
+<img height="60" src={Logo} title="Royal Rangers Nigeria Logo" alt="Royal Rangers Nigeria Logo"/>
         </BrandLink>
         <NavBar>
           <NavList>
@@ -25,14 +26,15 @@ const Header: React.FC<HeaderProps> = ({ screenWidth }) => {
                 <span>About</span>
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink to="/shop">
-                <span>Shop</span>
-              </NavLink>
-            </NavItem>
+           
             <NavItem>
               <NavLink to="/info">
                 <span>Info</span>
+              </NavLink>
+            </NavItem> <NavItem>
+           {/* if user then show else null */}
+              <NavLink to="/login">
+                <span>Login</span>
               </NavLink>
             </NavItem>
           </NavList>
@@ -52,27 +54,8 @@ const MyHeader = styled.header`
   width: 100%;
   top: 0;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.472);
-  background-color: white;
+  background-color: #e70000;
 `;
-const NavList = styled.ul`
-  justify-content: space-around;
-  display: flex;
-`;
-const NavItem = styled.li`
-  list-style: none;
-`;
-
-const NavLink = styled(Link)`
-  color: #000;
-  text-decoration: none;
-  height: 100%;
-  padding: 0 1.5em;
-`;
-
-const BrandLink = styled(NavLink)`
-  padding: 0.5em 0.5em;
-`;
-
 const NavBar = styled.nav`
   @media (max-width: 600px) {
     & {
@@ -83,4 +66,25 @@ const NavBar = styled.nav`
       right: 0;
     }
   }
+`;
+
+const NavList = styled.ul`
+  justify-content: space-around;
+  display: flex;
+  
+`;
+const NavItem = styled.li`
+  list-style: none;
+`;
+
+const NavLink = styled(Linky)`
+  color: #000;
+  text-decoration: none;
+  height: 100%;
+  padding: 0 1.5em;
+  color:white;
+`;
+
+const BrandLink = styled(NavLink)`
+  padding: 0.2em 0.5em;
 `;

@@ -6,7 +6,7 @@ export interface InfoProps {}
 
 const Info = () => {
   return (
-    <Container width={70}>
+    <Container maxWidth="1200px"  width={70}>
       <h1>Info Page</h1>
       <p>
         The major goal of this project is to create a common source of

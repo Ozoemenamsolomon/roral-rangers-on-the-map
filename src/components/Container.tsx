@@ -6,6 +6,8 @@ export interface ContainerProps {
   display?: string;
   justifyContent?: string;
   alignItems?: string;
+  maxWidth?:string
+  maxHeight?:string
 }
 
 const Container: React.FC<ContainerProps> = ({
@@ -14,6 +16,8 @@ const Container: React.FC<ContainerProps> = ({
   justifyContent,
   alignItems,
   display,
+  maxWidth,
+  maxHeight
 }) => {
   return (
     <ContainerDiv
@@ -21,6 +25,8 @@ const Container: React.FC<ContainerProps> = ({
       justifyContent={justifyContent}
       width={width}
       display={display}
+      maxWidth={maxWidth}
+      maxHeight={maxHeight}
     >
       {children}
     </ContainerDiv>
@@ -33,8 +39,13 @@ const ContainerDiv = styled('div')<{
   justifyContent?: string;
   alignItems?: string;
   display?: string;
+  maxWidth?:string
+  maxHeight?:string
 }>`
   width: ${(props) => `${props.width}%` || '70%'};
+  max-width: ${(props) => `${props.maxWidth}` || 'unset'};
+  max-width: ${(props) => `${props.maxHeight}` || 'unset'};
+  
   display: ${(props) => props.display || 'unset'};
   justify-content: ${(props) => props.justifyContent || 'unset'};
   align-items: ${(props) => props.alignItems || 'unset'};

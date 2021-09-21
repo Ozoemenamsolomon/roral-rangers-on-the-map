@@ -6,8 +6,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <h1>Hello from Home Page</h1>
-      Edit <code>src/App.js</code> and save to reload.
-    </div>
+<p>Welcome to the Homepage of the Royal Rangers of Nigeria</p>    </div>
   );
 };
 

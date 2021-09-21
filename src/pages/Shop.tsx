@@ -5,7 +5,7 @@ export interface ShopProps {}
 
 const Shop: React.FC = () => {
   return (
-    <Container>
+    <Container maxWidth="1200px" >
       <h1>Hello from Shop Page</h1>
     </Container>
   );
