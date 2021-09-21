@@ -1,11 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  Firestore,
-  addDoc,
-} from 'firebase/firestore';
+import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
 import { LocationProps } from '../pages/AddLocation';
 
 const firebaseConfig = {
@@ -23,15 +17,15 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 // Get a list of cities from your database
-export async function getCities(db: Firestore) {
+export const getLocation = async () => {
   const citiesCol = collection(db, 'Location');
   const citySnapshot = await getDocs(citiesCol);
   const cityList = citySnapshot.docs.map((doc) => doc.data());
   return cityList;
-}
-export async function addLocation(db: Firestore, data: LocationProps) {
+};
+export const addLocation = async (data: LocationProps) => {
   const locationCol = collection(db, 'Location');
   const citySnapshot = await addDoc(locationCol, data);
   const cityID = citySnapshot.id;
   return cityID;
-}
+};

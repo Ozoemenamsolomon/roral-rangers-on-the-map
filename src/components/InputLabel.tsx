@@ -10,6 +10,7 @@ export interface InputLabelProps {
   label: string;
   placeholder?: string;
   readOnly?: boolean;
+  required?: boolean;
 }
 
 const InputLabel: React.FC<InputLabelProps> = ({
@@ -20,6 +21,8 @@ const InputLabel: React.FC<InputLabelProps> = ({
   onChange,
   label,
   children,
+  required,
+  readOnly,
 }) => {
   return (
     <InputLabelWrapper>
@@ -30,6 +33,8 @@ const InputLabel: React.FC<InputLabelProps> = ({
         name={name}
         value={value}
         onChange={onChange}
+        required={required}
+        readOnly={readOnly}
       />
       {children}
     </InputLabelWrapper>

@@ -1,9 +1,9 @@
 import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import styled from 'styled-components';
 import SooPopup from '../components/SooPopup';
-import { addLocation, db } from '../utils/firebase';
 import InputLabel from '../components/InputLabel';
 import Container from '../components/Container';
+import { addLocation } from '../utils/firebase';
 
 export interface AddLocationProps {}
 
@@ -57,6 +57,8 @@ const AddLocation: React.FC<AddLocationProps> = () => {
   ) => {
     if (e.target.type === 'checkbox') {
       console.dir(e.target);
+    } else if (e.target.type === 'tel') {
+      setFormValue({ ...formValue, [e.target.name]: parseInt(e.target.value) });
     } else {
       setFormValue({ ...formValue, [e.target.name]: e.target.value });
     }
@@ -65,11 +67,11 @@ const AddLocation: React.FC<AddLocationProps> = () => {
   const submitForm = (e: MouseEvent) => {
     e.preventDefault();
     console.log(formValue);
-    addLocation(db, {
+    addLocation({
       ...formValue,
       realCoordinate: {
-        longitude: parseFloat(formValue.coordinate.split(',')[0]),
-        latitude: parseFloat(formValue.coordinate.split(',')[1]),
+        latitude: parseFloat(formValue.coordinate.split(',')[0]),
+        longitude: parseFloat(formValue.coordinate.split(',')[1]),
       },
     }).then((a) => console.log(a));
   };
@@ -88,6 +90,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
               value={formValue.churchName}
               onChange={handleChange}
               label="Church Name"
+              required
             />
             <InputLabel
               type="text"
@@ -96,6 +99,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
               value={formValue.address}
               onChange={handleChange}
               label="Address"
+              required
             />
             <InputLabel
               label="Section"
@@ -104,6 +108,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
               id="section"
               value={formValue.section}
               onChange={handleChange}
+              required
             />
             <InputLabel
               type="text"
@@ -112,6 +117,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
               value={formValue.district}
               onChange={handleChange}
               label="District"
+              required
             />
             <InputLabel
               type="text"
@@ -128,12 +134,13 @@ const AddLocation: React.FC<AddLocationProps> = () => {
               value={formValue.state}
               onChange={handleChange}
               label="State"
+              required
             />
             <InputLabel
               type="tel"
               name="telephone"
               id="telephone"
-              value={formValue.telephone}
+              value={!formValue.telephone ? 0 : formValue.telephone}
               onChange={handleChange}
               label="Telephone"
             />
@@ -153,6 +160,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
               onChange={handleChange}
               readOnly={autoLocation}
               label="Coordinate"
+              required
             />
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span>or</span>
@@ -186,10 +194,7 @@ const AddLocation: React.FC<AddLocationProps> = () => {
 
 export default AddLocation;
 
-const FormContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-`;
+const FormContainer = styled.div``;
 
 const FormWrapper = styled.div`
   max-width: 350px;

@@ -1,6 +1,6 @@
 import { DocumentData } from '@firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import { db, getCities } from '../utils/firebase';
+import { getLocation } from '../utils/firebase';
 
 export interface FindOutpostProps {}
 
@@ -9,7 +9,7 @@ const FindOutpost: React.FC = () => {
   const [Locations, setLocations] = useState(data);
 
   useEffect(() => {
-    getCities(db).then((locations) => setLocations(locations));
+    getLocation().then((locations) => setLocations(locations));
   }, []);
 
   return (
